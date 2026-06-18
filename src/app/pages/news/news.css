@@ -1,0 +1,8 @@
+.page-header{
+	position: relative;
+    background: url('/assets/images/page-header-bg.webp');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+	padding: 250px 0 140px;
+}
