@@ -2650,8 +2650,22 @@ header.main-header .header-sticky.active{
 .footer-about{
     width: calc(78% - 10px);
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     align-items: center;
+}
+
+@media(max-width: 978px){
+	.footer-about{
+		flex-wrap: wrap;
+	}
+}
+
+@media(max-width: 991px){
+	.about-image img{
+	max-width: 100%;
+    height: 100%;
+    border-radius: 13px;
+	}
 }
 
 .footer-logo{
