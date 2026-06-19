@@ -50,7 +50,7 @@
 	--primary-color				: #1E1E1E;
 	--secondary-color			: #FAF9FA;
 	--text-color				: #9C9C9C;
-	--accent-color				: #3D493A;
+	--accent-color				: #05281D;
 	--accent-secondary-color	: #AEA17E;
 	--white-color				: #FFFFFF;
 	--divider-color				: #4156491A;
@@ -7650,4 +7650,25 @@ header.main-header .header-sticky.active{
 	.mobile-menu-overlay{
 			display:none !important;
 	}
+}
+
+
+.our-approach-img-2 {
+    width: 100%;
+    height: 500px; /* தேவைக்கு மாற்றிக்கொள்ளலாம் */
+    overflow: hidden;
+    border-radius: 50% / 30%;
+}
+
+.our-approach-img-2 img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    object-position: center center; /* Face center */
+    display: block;
+}
+
+
+.our-approach-img-2 img {
+    object-position: 0% center;
 }

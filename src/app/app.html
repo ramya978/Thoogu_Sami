@@ -12,13 +12,13 @@
               
               <ul class="navbar-nav mr-auto" id="menu">
                 <li class="nav-item"><a class="nav-link" href="home">Home</a></li>
-                <li class="nav-item submenu"><a class="nav-link" href="#">About Us</a>
+                <li class="nav-item submenu"><a class="nav-link" href="our-guru">About Us</a>
                   <ul>
                     <li class="nav-item"><a class="nav-link" href="our-guru">Our Guru</a></li>
                     <li class="nav-item"><a class="nav-link" href="wisdom">Wisdom</a></li>
                   </ul>
                 </li>
-                <li class="nav-item submenu"><a class="nav-link" href="#">Services</a>
+                <li class="nav-item submenu"><a class="nav-link" href="emotional-wellness">Services</a>
                   <ul>
                     <li class="nav-item"><a class="nav-link" href="emotional-wellness">Emotional Wellness</a></li>
                     <li class="nav-item"><a class="nav-link" href="physical-wellness">Physical Wellness</a></li>
@@ -26,7 +26,7 @@
                     <li class="nav-item"><a class="nav-link" href="therapeutic -wellness">Therapeutic Wellness</a></li>
                   </ul>
                 </li>
-                <li class="nav-item submenu"><a class="nav-link" href="#">Social Impacts</a>
+                <li class="nav-item submenu"><a class="nav-link" href="environment">Social Impacts</a>
                   <ul>
                     <li class="nav-item"><a class="nav-link" href="environment">Environment</a></li>
                     <li class="nav-item"><a class="nav-link" href="livihood">Livelihood</a></li>
@@ -35,7 +35,7 @@
                   </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="news">News</a></li>
-                <li class="nav-item "><a class="nav-link" href="#">Store</a>
+                <!-- <li class="nav-item "><a class="nav-link" href="#">Store</a> -->
                   <!-- <ul>
                     <li class="nav-item"><a class="nav-link" href="#">All Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Skincare</a></li>
@@ -44,7 +44,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">Wellness - Children</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Sacred Healing</a></li>
                   </ul> -->
-                </li>
+                <!-- </li> -->
                 <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
               </ul>
             </div>
@@ -128,14 +128,14 @@
           <ul class="mobile-nav">
             <li><a class="mobile-nav-link" href="home" (click)="toggleMenu()">Home</a></li>
             <li class="mobile-submenu">
-              <a class="mobile-nav-link" href="#" (click)="toggleSubmenu($event)">About Us <i class="fa-solid fa-chevron-down"></i></a>
+              <a class="mobile-nav-link" href="our-guru" (click)="toggleSubmenu($event)">About Us <i class="fa-solid fa-chevron-down"></i></a>
               <ul class="mobile-sub">
                 <li><a href="our-guru" (click)="toggleMenu()">Our Guru</a></li>
                 <li><a href="wisdom" (click)="toggleMenu()">Wisdom</a></li>
               </ul>
             </li>
             <li class="mobile-submenu">
-              <a class="mobile-nav-link" href="#" (click)="toggleSubmenu($event)">Services <i class="fa-solid fa-chevron-down"></i></a>
+              <a class="mobile-nav-link" href="emotional-wellness" (click)="toggleSubmenu($event)">Services <i class="fa-solid fa-chevron-down"></i></a>
               <ul class="mobile-sub">
                 <li><a href="emotional-wellness" (click)="toggleMenu()">Emotional Wellness</a></li>
                 <li><a href="physical-wellness" (click)="toggleMenu()">Physical Wellness</a></li>
@@ -144,7 +144,7 @@
               </ul>
             </li>
             <li class="mobile-submenu">
-              <a class="mobile-nav-link" href="#" (click)="toggleSubmenu($event)">Social Impacts <i class="fa-solid fa-chevron-down"></i></a>
+              <a class="mobile-nav-link" href="environment" (click)="toggleSubmenu($event)">Social Impacts <i class="fa-solid fa-chevron-down"></i></a>
               <ul class="mobile-sub">
                 <li><a href="environment" (click)="toggleMenu()">Environment</a></li>
                 <li><a href="livihood" (click)="toggleMenu()">Livelihood</a></li>
@@ -153,7 +153,7 @@
               </ul>
             </li>
             <li><a class="mobile-nav-link" href="news" (click)="toggleMenu()">News</a></li>
-            <li class="mobile-submenu">
+            <!-- <li class="mobile-submenu">
               <a class="mobile-nav-link" href="#" (click)="toggleSubmenu($event)">Store <i class="fa-solid fa-chevron-down"></i></a>
               <ul class="mobile-sub">
                 <li><a href="#" (click)="toggleMenu()">All Products</a></li>
@@ -163,7 +163,7 @@
                 <li><a href="#" (click)="toggleMenu()">Wellness - Children</a></li>
                 <li><a href="#" (click)="toggleMenu()">Sacred Healing</a></li>
               </ul>
-            </li>
+            </li> -->
             <li><a class="mobile-nav-link" href="contact" (click)="toggleMenu()">Contact</a></li>
           </ul>
           <div class="mobile-menu-footer">
