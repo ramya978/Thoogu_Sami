@@ -18,6 +18,7 @@ import { SkincareComponent } from './pages/stores/skincare/skincare';
 import { StoreDetailsComponent } from './pages/stores/store-details/store-details';
 import { AllProductsComponent } from './pages/stores/all-products/all-products';
 import { DonationComponent } from './pages/donation/donation';
+import { SitemapComponent } from './pages/sitemap/sitemap';
 
 export const routes: Routes = [
 
@@ -28,10 +29,10 @@ export const routes: Routes = [
     {path:'emotional-wellness',component:EmotionalWellnessComponent},
     {path:'physical-wellness',component:PhysicalWellnessComponent},
     {path:'spiritual-wellness',component:SpiritualWellnessComponent},
-    {path:'therapeutic -wellness',component:TherapeuticWellnessComponent},
+    {path:'therapeutic-wellness',component:TherapeuticWellnessComponent},
     {path:'environment',component:EnvironmentComponent},
     {path:'farmer-support',component:FarmerSupportComponent},
-    {path:'livihood',component:LivelihoodComponent},
+    {path:'livelihood',component:LivelihoodComponent},
     {path:'rural-healthcare',component:RuralHealthcareComponent},
     {path:'news',component:NewsComponent},
     {path:'contact',component:ContactComponent},
@@ -40,8 +41,7 @@ export const routes: Routes = [
     {path:'store/:category',component:SkincareComponent},
     {path:'store-details',component:StoreDetailsComponent},
     {path:'allproducts',component:AllProductsComponent},
-    {path:'donation',component:DonationComponent}
-
-
+    {path:'donation',component:DonationComponent},
+    {path:'sitemap',component:SitemapComponent}
 
 ];

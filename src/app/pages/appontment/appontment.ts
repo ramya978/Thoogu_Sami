@@ -26,7 +26,7 @@ type ToastState = 'success' | 'error' | null;
 export class AppontmentComponent {
   public apiUrl = 'https://bhagavadkarma.org/api/appointment.php';
 
-  // form fields (kept as plain properties for [(ngModel)] like the original)
+  // form fields
   fname = '';
   lname = '';
   email = '';
@@ -35,12 +35,14 @@ export class AppontmentComponent {
   message = '';
   date = '';
   time = '';
-minDate: string = '';
-minTime: string = '';
+  minDate: string = '';
+  minTime: string = '';
+
   // ui state
   isSubmitting = signal(false);
   toast = signal<ToastState>(null);
   toastBarWidth = signal('100%');
+  timeError = signal<string>(''); // inline time error message
 
   private toastTimeoutId?: ReturnType<typeof setTimeout>;
   private toastBarTimeoutId?: ReturnType<typeof setTimeout>;
@@ -60,24 +62,72 @@ minTime: string = '';
   updateMinTime() {
     if (this.isToday) {
       const now = new Date();
+      // Add 4 hours to current time (appointment must be 4 hours ahead)
+      now.setHours(now.getHours() + 4);
       const hh = String(now.getHours()).padStart(2, '0');
       const mm = String(now.getMinutes()).padStart(2, '0');
       this.minTime = `${hh}:${mm}`;
 
+      // Clear time if it's before the new minimum
       if (this.time && this.time < this.minTime) {
         this.time = '';
       }
     } else {
-      this.minTime = ''; 
+      // For future dates, no minimum time restriction
+      this.minTime = '';
     }
+
+    // date change aana udane error clear pannunga
+    this.timeError.set('');
   }
 
+  onDateChange() {
+    this.updateMinTime();
+  }
+
+  // time select pannum bodhe immediate validate pannum
+  onTimeChange() {
+    this.timeError.set('');
+
+    if (!this.time) return;
+
+    if (this.isToday) {
+      const now = new Date();
+      const [selH, selM] = this.time.split(':').map(Number);
+      const selDate = new Date();
+      selDate.setHours(selH, selM, 0, 0);
+      const minAllowed = new Date(now.getTime() + 4 * 60 * 60 * 1000);
+
+      if (selDate < minAllowed) {
+        this.timeError.set(
+          'Please select a time at least 4 hours from now.'
+        );
+      }
+    }
+  }
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
       Object.values(form.controls).forEach((control) => control.markAsTouched());
       return;
     }
+
+    // Additional validation: ensure time is at least 4 hours ahead if today
+    if (this.isToday) {
+      const now = new Date();
+      const [selH, selM] = this.time.split(':').map(Number);
+      const selDate = new Date();
+      selDate.setHours(selH, selM, 0, 0);
+      const minAllowed = new Date(now.getTime() + 4 * 60 * 60 * 1000);
+      if (selDate < minAllowed) {
+        this.timeError.set(
+          'Appointment time must be at least 4 hours from now. Please select a later time.'
+        );
+        return; // submission block aagidum
+      }
+    }
+
+    this.timeError.set('');
 
     const payload: AppointmentPayload = {
       firstName: this.fname,
@@ -135,6 +185,7 @@ minTime: string = '';
     this.message = '';
     this.date = '';
     this.time = '';
+    this.timeError.set('');
   }
 
   private showToast(type: 'success' | 'error') {
@@ -155,10 +206,8 @@ minTime: string = '';
   }
 
   limitEmailLength() {
-  if (this.email && this.email.length > 10) {
-    this.email = this.email.substring(0, 10);
+    if (this.email && this.email.length > 10) {
+      this.email = this.email.substring(0, 10);
+    }
   }
-}
-
-
 }

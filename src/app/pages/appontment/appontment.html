@@ -69,40 +69,44 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
 
-                   <!-- Date -->
-<div class="form-group col-md-6 mb-5">
-  <input
-    type="date"
-    name="date"
-    class="form-control"
-    id="date"
-    [(ngModel)]="date"
-    (ngModelChange)="updateMinTime()"
-    required
-    [min]="minDate"
-    #dateRef="ngModel"
-  >
-  <div class="help-block with-errors" *ngIf="dateRef.invalid && dateRef.touched">
-    Date is required.
-  </div>
-</div>
+                                <!-- Date -->
+                                <div class="form-group col-md-6 mb-5">
+                                  <input
+                                    type="date"
+                                    name="date"
+                                    class="form-control"
+                                    id="date"
+                                    [(ngModel)]="date"
+                                    (ngModelChange)="onDateChange()"
+                                    required
+                                    [min]="minDate"
+                                    #dateRef="ngModel"
+                                  >
+                                  <div class="help-block with-errors" *ngIf="dateRef.invalid && dateRef.touched">
+                                    Date is required.
+                                  </div>
+                                </div>
 
-<!-- Time -->
-<div class="form-group col-md-6 mb-5">
-  <input
-    type="time"
-    name="time"
-    class="form-control"
-    id="time"
-    [(ngModel)]="time"
-    required
-    [min]="isToday ? minTime : ''"
-    #timeRef="ngModel"
-  >
-  <div class="help-block with-errors" *ngIf="timeRef.invalid && timeRef.touched">
-    Time is required.
-  </div>
-</div>
+                                <!-- Time -->
+                                <div class="form-group col-md-6 mb-5">
+                                  <input
+                                    type="time"
+                                    name="time"
+                                    class="form-control"
+                                    id="time"
+                                    [(ngModel)]="time"
+                                    (ngModelChange)="onTimeChange()"
+                                    required
+                                    [min]="minTime"
+                                    #timeRef="ngModel"
+                                  >
+                                  <div class="help-block with-errors" *ngIf="timeRef.invalid && timeRef.touched">
+                                    Time is required.
+                                  </div>
+                                  <div class="help-block with-errors" *ngIf="timeError()" style="color:#d33; font-size:13px; margin-top:6px;">
+                                    {{ timeError() }}
+                                  </div>
+                                </div>
 
                                 <div class="col-lg-12">
                                     <div class="contact-form-btn">
@@ -132,7 +136,7 @@
                             <!-- Appointment Item Start -->
                             <div class="appointment-item wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="icon-box">
-                                    <img src="assets/images/icon-appointment-item-1.webp" alt="">
+                                    <img src="assets/images/icon-appointment-item-1.webp" alt="Customer Services icon">
                                 </div>
                                 <div class="appointment-item-content">
                                     <h3>Customer Services</h3>
