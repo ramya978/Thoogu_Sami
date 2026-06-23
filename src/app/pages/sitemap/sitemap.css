@@ -257,6 +257,10 @@
 .donate-icon i { color: #e74c3c; }
 .sitemap-link-card:hover .donate-icon { background: #e74c3c; }
 
+.aura-icon { background: rgba(106, 27, 154, 0.12); }
+.aura-icon i { color: #7b1fa2; }
+.sitemap-link-card:hover .aura-icon { background: #7b1fa2; }
+
 .link-card-content {
   flex: 1;
   min-width: 0;
