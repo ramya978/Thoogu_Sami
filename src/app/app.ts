@@ -7,6 +7,7 @@ import { CartService } from './services/cart';
 import { AuthService } from './services/auth';
 import { FormsModule } from '@angular/forms';
 import { CartItem } from './Models/product.model';
+import { RAZORPAY_KEY } from './payment.config';
 
 @Component({
   selector: 'app-root',
@@ -425,7 +426,7 @@ export class App implements OnInit, OnDestroy {
     const desc = this.summaryItems().map(i => `${i.name}×${i.qty}`).join(', ');
 
     const options: any = {
-      key:         'rzp_test_SzcqBk5gDrHDv5',
+      key:         RAZORPAY_KEY,
       amount:      this.grandTotal() * 100,
       currency:    'INR',
       name:        'Swami Of The South',

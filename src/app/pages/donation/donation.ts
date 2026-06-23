@@ -9,6 +9,7 @@ import {
 import { AuthService } from '../../services/auth';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { RAZORPAY_KEY } from '../../payment.config';
 
 @Component({
   selector: 'app-donation',
@@ -105,7 +106,10 @@ export class DonationComponent implements OnDestroy {
   donating       = signal(false);
   payError       = signal('');
   successVisible = signal(false);
+  failVisible    = signal(false);
   paymentId      = signal('');
+  failTxnId      = signal('');
+  failTime       = signal('');
 
   // ── Toast ──────────────────────────────────────────────────
   toastVisible = signal(false);
@@ -159,37 +163,53 @@ export class DonationComponent implements OnDestroy {
     this.payError.set('');
     this.donating.set(true);
 
+    let failureMessage = '';
+
     const options: any = {
-      key: 'rzp_live_JZytAETSWKwnfl',
+      key: RAZORPAY_KEY,
       amount: this.selectedAmount() * 100,
       currency: 'INR',
       name: 'BhagawadKarma',
       description: 'Donation — ' + this.purpose(),
       image: 'assets/images/logo/BHAGAWADKARMA - Logo.svg',
-   
+
       notes: {
         pan:     this.dPan,
         purpose: this.purpose(),
       },
       theme: { color: 'pink' },
+      retry: { enabled: false },
       handler: (response: any) => {
         this.donating.set(false);
         this.paymentId.set(response.razorpay_payment_id);
         this.successVisible.set(true);
       },
       modal: {
-        ondismiss: () => { this.donating.set(false); },
+        ondismiss: () => {
+          this.donating.set(false);
+          if (failureMessage) {
+            this.payError.set(failureMessage);
+            this.failVisible.set(true);
+            failureMessage = '';
+          }
+        },
       },
     };
 
     const rzp = new (window as any).Razorpay(options);
     rzp.on('payment.failed', (resp: any) => {
-      this.donating.set(false);
-      this.payError.set(
-        'Payment failed: ' + (resp.error.description || 'Something went wrong. Please try again.')
-      );
+      failureMessage = resp.error.description || 'Something went wrong. Please try again.';
+      this.failTxnId.set(resp.error?.metadata?.payment_id || '');
+      this.failTime.set(new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }));
     });
     rzp.open();
+  }
+
+  closeFailure() {
+    this.failVisible.set(false);
+    this.payError.set('');
+    this.failTxnId.set('');
+    this.failTime.set('');
   }
 
   // ── Copy payment ID ────────────────────────────────────────

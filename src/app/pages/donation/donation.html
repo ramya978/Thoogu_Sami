@@ -368,6 +368,31 @@
   </div>
 }
 
+<!-- FAILURE OVERLAY -->
+@if (failVisible()) {
+  <div class="success-overlay show">
+    <div class="success-box fail-box">
+      <div class="fail-icon">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <h3>Payment Failed</h3>
+      <p>We were unable to process your donation.</p>
+      <div class="fail-desc">{{ payError() }}</div>
+      @if (failTxnId() || failTime()) {
+        <div class="fail-code">
+          @if (failTime()) {
+            <div style="margin-bottom:6px; color:#842029;">{{ failTime() }}</div>
+          }
+          @if (failTxnId()) {
+            <div>Transaction ID &nbsp;<span>{{ failTxnId() }}</span></div>
+          }
+        </div>
+      }
+      <button class="btn-close-success" (click)="closeFailure()">Try Again</button>
+    </div>
+  </div>
+}
+
 <!-- Toast -->
 @if (toastVisible()) {
   <div class="cart-toast show">
