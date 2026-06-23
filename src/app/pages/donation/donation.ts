@@ -50,8 +50,13 @@ export class DonationComponent implements OnDestroy {
   onCustom(event: Event) {
     const val = parseInt((event.target as HTMLInputElement).value, 10);
     this._customActive = true;
-    this.selectedAmount.set(val > 0 ? val : 0);
-    this.clearErr('amt');
+    if (!isNaN(val) && val < 100) {
+      this.selectedAmount.set(0);
+      this.setErr('amt');
+    } else {
+      this.selectedAmount.set(val > 0 ? val : 0);
+      this.clearErr('amt');
+    }
   }
 
   // ── Purpose ────────────────────────────────────────────────
@@ -161,6 +166,13 @@ export class DonationComponent implements OnDestroy {
   // ── Razorpay ───────────────────────────────────────────────
   processDonation() {
     this.payError.set('');
+
+    // Validate amount before opening Razorpay
+    if (!this.selectedAmount() || this.selectedAmount() < 100) {
+      this.setErr('amt');
+      return;
+    }
+
     this.donating.set(true);
 
     let failureMessage = '';
@@ -169,9 +181,9 @@ export class DonationComponent implements OnDestroy {
       key: RAZORPAY_KEY,
       amount: this.selectedAmount() * 100,
       currency: 'INR',
-      name: 'BhagawadKarma',
+      name: 'Bhagavad Karma',
       description: 'Donation — ' + this.purpose(),
-      image: 'assets/images/logo/BHAGAWADKARMA - Logo.svg',
+      image: 'assets/images/logo/BHAGAVADKARMA - Logo.svg',
 
       notes: {
         pan:     this.dPan,

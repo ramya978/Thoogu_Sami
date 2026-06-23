@@ -19,6 +19,7 @@ import { StoreDetailsComponent } from './pages/stores/store-details/store-detail
 import { AllProductsComponent } from './pages/stores/all-products/all-products';
 import { DonationComponent } from './pages/donation/donation';
 import { SitemapComponent } from './pages/sitemap/sitemap';
+import { AuraMechanismComponent } from './pages/services/aura-mechanism/aura-mechanism';
 
 export const routes: Routes = [
 
@@ -42,6 +43,8 @@ export const routes: Routes = [
     {path:'store-details',component:StoreDetailsComponent},
     {path:'allproducts',component:AllProductsComponent},
     {path:'donation',component:DonationComponent},
-    {path:'sitemap',component:SitemapComponent}
+    {path:'sitemap',component:SitemapComponent},
+    {path:'aura-mechanism',component:AuraMechanismComponent}
+
 
 ];
